@@ -8,6 +8,15 @@ const ChatBot = (props) => {
      const handleChatBotOpen = () => {
           setShowChats(!showChats);
           setShowSelectedChat(true)
+
+          if (!showChats == false) {
+               setSelectedChat(null)
+          }
+     }
+
+     const handleCloseChat = () => {
+          setSelectedChat(null)
+          setShowSelectedChat(false)
      }
      return (
           <div className=" fixed w-[80%] bottom-0 right-[40px] flex items-end  gap-5 flex-row-reverse" >
@@ -42,7 +51,7 @@ const ChatBot = (props) => {
                {/* Selected  user chat*/}
                {
                     selectedChat !== null && (
-                         <div className={`bg-[#2C65C8] w-[250px] rounded-tr rounded-tl  transition-all  ease-in-out delay-150 ${selectedChat !== null ? `traslate-x-0 translate-y-0 h-[${showSelectedChat ? "40" : "5"}vh]  ` : 'translate-y-22  h-0'}`} >
+                         <div className={`bg-[#2C65C8] w-[250px] rounded-tr rounded-tl  transition-all  ease-in-out delay-150 ${selectedChat !== null ? `traslate-x-0 translate-y-0 ${showSelectedChat ? "h-[40vh]" : "h-[5vh]"}  ` : 'translate-y-22  h-0'}`} >
                               <div className=" px-2 flex items-center justify-between py-2  text-white cursor-pointer">
 
                                    <div className="flex items-center gap-2">
@@ -60,7 +69,7 @@ const ChatBot = (props) => {
                                                   <BiChevronUp className="text-xl" onClick={() => { setShowSelectedChat(true) }} />
                                         }
 
-                                        <IoIosClose className=" text-white" onClick={() => { setSelectedChat(null) }} />
+                                        <IoIosClose className=" text-white" onClick={handleCloseChat} />
                                    </div>
 
                               </div>
